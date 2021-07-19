@@ -1,0 +1,28 @@
+.GamesPickerMenu_wrapper
+    // Initial styles:
+    opacity: 0
+    pointer-events: none
+    animation: showGamesMenu .25s forwards
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100vh
+    background-color: #00000077
+    @include center()
+    justify-content: center
+    .games_container
+        width: 50%
+        height: 60%
+        background: #11111199
+        border: 2px dashed #ccc
+        border-radius: 1rem
+        
+            
+
+
+@keyframes showGamesMenu
+    100%
+        opacity: 1
+        pointer-events: visible
+        

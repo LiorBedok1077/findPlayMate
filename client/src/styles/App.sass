@@ -1,0 +1,37 @@
+body, *
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    &::selection
+        background-color: transparent
+
+
+@mixin center()
+    display: flex
+    align-items: center
+
+@mixin input_style()
+    background: transparent
+    border: none
+    &:focus
+        outline: none
+
+
+//imports:
+@import './pages/_MainPage'
+@import './pages/_Err'
+@import './pages/_CMS'
+@import './components/_ActionBtn'
+@import './components/_Login'
+@import 'components/_Register'
+@import 'components/_GamesPickerMenu'
+
+.App,
+.mainPage
+    width: 100vw
+    height: 100vh
+    overflow: hidden
+
+.mainPage
+    background: linear-gradient(301.48deg, #000234 14.1%, #000D21 27.38%, #170022 84.12%)
+    //background: linear-gradient(301.48deg, #000234 14.1%, #000D21 27.38%, #170022 84.12%)

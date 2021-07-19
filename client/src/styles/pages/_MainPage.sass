@@ -1,0 +1,85 @@
+.mainPage
+    display: flex
+    align-items: center
+    justify-content: center
+    
+
+.line_section_div
+    background: #00808000
+    height: 16rem
+    width: 80vw
+    border-left: 6px solid #fff
+    overflow: visible
+    @include center()
+    justify-content: flex-end
+    &, *
+        transition: all .7s ease
+    .main_content_section
+        opacity: 1
+        flex-shrink: 0
+        width: 80vw
+        height: 100%
+        background: #f40f0f00
+        @include center()
+        padding: 0 3rem
+        justify-content: space-between
+        font-family: 'Oxygen', sans-serif
+        span
+            transition: all .3s ease
+            font-size: 44px
+            color: silver
+            line-height: 4rem
+        button.btn_user_img_loader
+            border: 4px solid #fff
+            background: #00000066
+            box-sizing: border-box
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25)
+            width: 16rem
+            height: 16rem
+            border-radius: 100%
+            overflow: hidden
+            cursor: pointer
+            h3
+                color: #eee
+                font-size: 2rem
+            img
+                opacity: 0  // initial state
+                height: 100%
+                animation: activateSearchMode .5s forwards
+                
+
+// on search mode:
+.line_section_div_search
+    width: 22rem
+    .main_content_section
+        pointer-events: none
+        span
+            opacity: 0
+
+
+// on login mode:
+.line_section_div_login
+    height: 20rem
+    justify-content: flex-start
+    .main_content_section   // remove content section, replace it with login section
+        position: absolute
+        transform: translateX(-60rem)
+        opacity: 0
+        pointer-events: none
+    
+        
+// on register mode:
+.line_section_div_register
+    height: 28rem
+    justify-content: flex-start
+    .main_content_section   // remove content section, replace it with login section
+        position: absolute
+        transform: translateX(-60rem)
+        opacity: 0
+        pointer-events: none
+
+
+// keyframes:
+@keyframes activateSearchMode
+    100%
+        opacity: 1
