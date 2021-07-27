@@ -2,49 +2,50 @@ import {useEffect, useState} from 'react'
 import axios from 'axios'
 import Feedback from './Feedback'
 import LangPicker from './LangPicker'
-import GamePicker from './GamePicker'
 
 const UpdateDetails = () => {
     
-    //fetch the current data and put it on the inputs value:
-    useEffect(() => {
-        const fetchData = async () => {
-        const token = localStorage.getItem('token')
-        if(!token) {
-                alert('Access Denied. Please login.')
-                window.location.href = '/'
-        } else {
-            axios.post(`http://141.226.244.70:5000/auth/getDetails/`, {
-                token: token
-            })
-            .then(res => {
-                setCurrentDetails(res.data)
-                console.log(res.data)
-            }).catch(err => {
-                if(err.response.status === 401) {
-                    localStorage.removeItem('token')
-                    alert('Access Denied. Please login again.')
-                    window.location.href = '/';
-                }
-                else {
-                    setFeedbackMsg({
-                        type: "error",
-                        data: err.response.data
-                    })
-                }
-            })
-        }
-    }
-    fetchData()
-}, [])
-
-
     //define the states:
     const [currentDetails, setCurrentDetails] = useState({social: {}})
     const [feedbackMsg, setFeedbackMsg] = useState({
         type: "",
         data: ""
     })
+
+    //if axios return an error, react based on the error type:
+    const ErrHandling = (err) => {
+        if(err.response.status === 401) {
+            localStorage.removeItem('token')
+            window.location.href = '/login';
+        }
+        else {
+            setFeedbackMsg({
+                type: "error",
+                data: err.response.data
+            })
+        }
+    }
+
+    //fetch the current data and put it on the inputs value:
+    useEffect(() => {
+        const fetchData = async () => {
+            const token = localStorage.getItem('token')
+            if(!token) return window.location.href = '/err/401'
+            else {
+                axios.post(`http://141.226.244.70:5000/auth/getDetails/`, {
+                    token: token
+                })
+                .then(res => {
+                    setCurrentDetails(res.data)
+                    console.log(res.data)
+                }).catch(err => {
+                    ErrHandling(err)
+                })
+            }
+        }
+        fetchData()
+    }, [])
+
 
 
     //check if the values written correctly, send to the API, and handle the response:
@@ -76,24 +77,14 @@ const UpdateDetails = () => {
         }
 
         //send the data
-        axios.patch('http://141.226.244.70:5000/auth/updateDetails', formData).then((res) => {
-            //handle success:
+        axios.patch('http://141.226.244.70:5000/auth/updateDetails', formData)
+        .then((res) => {
             setFeedbackMsg({
                 type: "success",
                 data: "Deatails updated succesfuly!"
             })
         }).catch((err) => {
-            //handle errors:
-            if(err.response.status === 401) {
-                localStorage.removeItem('token')
-                alert('Access Denied. Please login again.')
-                window.location.href = '/';
-            } else {
-                setFeedbackMsg({
-                    type: "error",
-                    data: err.response.data
-                })
-            }
+            ErrHandling(err)
         })
         
     }
@@ -110,7 +101,6 @@ const UpdateDetails = () => {
                 <input type="password" defaultValue={currentDetails.password} min="6" placeholder="password"/>
                 <input type="number" defaultValue={currentDetails.age} max="120" min="10" placeholder="age"/>
                 <LangPicker defaultValue={currentDetails.language}/>
-                <GamePicker/>
                 <input type="text" defaultValue={currentDetails.social.discord} required placeholder="Discord Username"/>
                 <input type="text" defaultValue={currentDetails.social.twitch} placeholder="Twitch Username"/>
                 <input type="text" defaultValue={currentDetails.profilePicture} placeholder="Profile Picture URL"/>

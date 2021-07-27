@@ -44,6 +44,9 @@ const userSchema = new mongoose.Schema({
     allowPublish: {
         type: Boolean,
         default: true
+    },
+    IP: {
+        type: String
     }
 })
 

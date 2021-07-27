@@ -2,9 +2,11 @@
     display: flex
     align-items: center
     justify-content: center
+    position: relative
     
 
 .line_section_div
+    max-width: 1500px   // limit container expanding
     background: #00808000
     height: 16rem
     width: 80vw
@@ -15,6 +17,7 @@
     &, *
         transition: all .7s ease
     .main_content_section
+        max-width: 1500px   // limit container expanding
         opacity: 1
         flex-shrink: 0
         width: 80vw
@@ -24,20 +27,26 @@
         padding: 0 3rem
         justify-content: space-between
         font-family: 'Oxygen', sans-serif
+        display: flex
         span
             transition: all .3s ease
             font-size: 44px
             color: silver
             line-height: 4rem
-        button.btn_user_img_loader
-            border: 4px solid #fff
-            background: #00000066
-            box-sizing: border-box
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25)
-            width: 16rem
-            height: 16rem
-            border-radius: 100%
-            overflow: hidden
+        .login_btn
+            background-image: url('../img/loginBtn.png')
+        .search_btn
+            background-image: url('../img/srcBtn.png')
+        .init_loggedin_data_fetch
+            background-image: url('../img/loadingBtn.png')
+
+        .main_action_button
+            //border: 2px solid #fff
+            border: none
+            background-size: cover
+            border-radius: 50%
+            width: 15rem
+            height: 15rem
             cursor: pointer
             h3
                 color: #eee
@@ -45,7 +54,7 @@
             img
                 opacity: 0  // initial state
                 height: 100%
-                animation: activateSearchMode .5s forwards
+                animation: fadeToExistance .5s forwards
                 
 
 // on search mode:
@@ -79,7 +88,17 @@
         pointer-events: none
 
 
-// keyframes:
-@keyframes activateSearchMode
-    100%
-        opacity: 1
+
+@media (max-width: 700px)
+    .line_section_div
+        height: 35rem
+        border-left: none
+    .main_content_section
+        padding-left: 25% !important
+        flex-direction: column
+        justify-content: space-evenly !important
+        align-items: center !important
+        span 
+            font-size: 2rem !important
+            line-height: 3rem !important
+            width: 140% !important

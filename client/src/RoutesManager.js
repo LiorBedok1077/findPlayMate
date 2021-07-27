@@ -20,10 +20,13 @@ const RoutesManager = () => {
           <Route path="/cms">
             <UpdateDetails/>
           </Route>
-          <Route path='/404'>
+          <Route path='/err/401'>
+              <Err type="Access Denied. Please try to login again."/>
+          </Route>
+          <Route path='/err/404'>
               <Err type="The page not found."/>
           </Route>
-            <Redirect from='*' to='/404' />
+            <Redirect from='*' to='/err/404' />
         </Switch>
         </Router>
     )

@@ -4,7 +4,7 @@ const verifyToken = require('../middlewares/verifyToken')
 const actionsController = require('../controllers/actionsController')
 
 
-router.get('/findMatch/:game', verifyToken, (req, res) => {
+router.post('/findMatch/:game', verifyToken, (req, res) => {
 
     actionsController.findMatch(req, res)
 })

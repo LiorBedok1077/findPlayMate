@@ -1,3 +1,4 @@
+//Returns feedback to the user based on the response type
 
 const Feedback = ({type, children}) => {
     

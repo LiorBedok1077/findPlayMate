@@ -4,7 +4,7 @@
     margin-left: 3rem
     transform: scale(1.2)
     // Show form on delay:
-    animation: showFormOnDelay .3s .2s forwards
+    animation: showFormOnDelay .4s .2s forwards
     opacity: 0
     transform: translateX(-100%)
     font-family: 'Oxygen', sans-serif
@@ -18,7 +18,8 @@
     padding: 2rem
     padding-right: 0
     color: white
-
+    overflow: visible
+    position: relative
     form
         display: flex
         flex-direction: column
@@ -73,6 +74,9 @@
                     height: 36%
                     resize: none
                     cursor: default
+                    font-family: 'Oxygen', sans-serif
+                    font-size: 14px
+                    
         .footer
             width: 100%
             padding: 0 1rem
@@ -90,11 +94,3 @@
                 color: #4ef
                 cursor: pointer
                 text-align: center
-
-
-@keyframes showFormOnDelay
-    100%
-        opacity: 1
-        transform: translateX(0)
-        transform: scale(1.2) // ya' pointer here -> 
-        

@@ -18,7 +18,7 @@ const Login = ({setSection}) => {
         //values validation:
         if(e.target[1].value.length < 6 || !e.target[0].value.includes(".")) return setFeedbackMsg({
             type: "error",
-            data: "The email address or password is not written correctly or empty. try again."
+            data: "The email address or password is not written correctly. Please try again."
         })
 
         //send the data

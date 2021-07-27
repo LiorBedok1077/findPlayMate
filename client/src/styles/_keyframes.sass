@@ -1,0 +1,40 @@
+/* -- Keyframes component - stores all keyframes required for a dynamic page -- */
+
+
+// [ MainPage ] :: shows profile image after user clicked search btn
+@keyframes fadeToExistance
+    100%
+        opacity: 1
+
+
+// [ Register, Login ] :: shows login/register form when being called
+@keyframes showFormOnDelay
+    100%
+        opacity: 1
+        transform: translateX(0)
+        transform: scale(1.2)
+        
+
+// [ GamesPickerMenu ] :: shows games-menu when user is choosing games from the games library
+@keyframes showGamesMenu
+    100%
+        opacity: 1
+        pointer-events: visible
+        
+
+
+
+/* mixin variables - stores all mixins and style objects */
+
+// Centers all elements inside a container vertically (horizontally are defined inside code);
+@mixin center()
+    display: flex
+    align-items: center
+
+
+// Defines the initial input styles (the rest are defined inside code):
+@mixin input_style()
+    background: transparent
+    border: none
+    &:focus
+        outline: none

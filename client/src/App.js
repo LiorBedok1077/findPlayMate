@@ -1,5 +1,6 @@
 import RoutesManager from './RoutesManager'
-import './styles/App.sass'
+import './styles/App.sass'  // local styles
+
 const App = () => {
     
     return (
